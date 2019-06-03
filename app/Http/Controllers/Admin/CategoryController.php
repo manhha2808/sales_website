@@ -49,7 +49,6 @@ class CategoryController extends Controller
     {
         $data['cate'] = Category::find($id);
         return view('backend.editcategory', $data);
-
     }
 
     /**

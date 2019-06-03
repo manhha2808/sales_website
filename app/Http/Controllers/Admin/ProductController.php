@@ -18,8 +18,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data['productlist'] = DB::table('products')->join('category', 'products.category','=','category.cate_id')->orderBy('product_id','desc')->get();
-        return view('backend.product',$data);
+        $data['productlist'] = DB::table('products')->join('category', 'products.category', '=', 'category.cate_id')->orderBy('product_id', 'desc')->get();
+        return view('backend.product', $data);
     }
 
     /**
@@ -106,32 +106,32 @@ class ProductController extends Controller
     {
         $product = new Product;
 
-        $arr['name'] = $request->name;
-        $arr['slug'] = str_slug($request->name);
-        $arr['cpu'] = $request->cpu;
-        $arr['ram'] = $request->ram;
-        $arr['storage'] = $request->storage;
-        $arr['display'] = $request->display;
-        $arr['vga'] = $request->vga;
-        $arr['battery'] = $request->battery;
-        $arr['weight'] = $request->weight;
-        $arr['material'] = $request->material;
-        $arr['kind'] = $request->kind;
-        $arr['condition'] = $request->condition;
-        $arr['price'] = $request->price;
-        $arr['promotion'] = $request->promotion;
-        $arr['status'] = $request->status;
-        $arr['featured'] = $request->featured;
-        $arr['warranty'] = $request->warranty;
-        $arr['description'] = $request->description;
-        $arr['category'] = $request->category;
-        if($request->hasFile('img')){
+        $productData['name'] = $request->name;
+        $productData['slug'] = str_slug($request->name);
+        $productData['cpu'] = $request->cpu;
+        $productData['ram'] = $request->ram;
+        $productData['storage'] = $request->storage;
+        $productData['display'] = $request->display;
+        $productData['vga'] = $request->vga;
+        $productData['battery'] = $request->battery;
+        $productData['weight'] = $request->weight;
+        $productData['material'] = $request->material;
+        $productData['kind'] = $request->kind;
+        $productData['condition'] = $request->condition;
+        $productData['price'] = $request->price;
+        $productData['promotion'] = $request->promotion;
+        $productData['status'] = $request->status;
+        $productData['featured'] = $request->featured;
+        $productData['warranty'] = $request->warranty;
+        $productData['description'] = $request->description;
+        $productData['category'] = $request->category;
+        if ($request->hasFile('img')) {
             $img = $request->img->getClientOriginalName();
-            $arr['img'] = $img;
+            $productData['img'] = $img;
             $request->img->storeAs('./public/img', $img);
         }
 
-        $product::where('product_id', $id)->update($arr);
+        $product::where('product_id', $id)->update($productData);
 
         return redirect('admin/product');
     }

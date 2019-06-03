@@ -36,9 +36,9 @@ class Products extends Migration
             $table->string('img');
             $table->bigInteger('category')->unsigned();
             $table->foreign('category')
-                    ->references('cate_id')
-                    ->on('category')
-                    ->onDelete('cascade');
+                ->references('cate_id')
+                ->on('category')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

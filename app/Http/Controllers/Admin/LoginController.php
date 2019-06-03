@@ -38,15 +38,15 @@ class LoginController extends Controller
     {
         $arr = ['email' => $request->email, 'password' => $request->password];
 
-        if($request->remember = 'Remember Me'){
+        if ($request->remember = 'Remember Me') {
             $remember = true;
-        }else {
-            $remember =false;
+        } else {
+            $remember = false;
         }
 
-        if(Auth::attempt($arr,$remember)) {
+        if (Auth::attempt($arr, $remember)) {
             return redirect()->intended('admin/home');
-        }else{
+        } else {
             return back()->withInput()->with('error', 'Tài khoản hoặc mật khẩu không đúng !');
         }
         return view('backend.login');

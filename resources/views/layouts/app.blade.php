@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href="{{ asset('..') }}/">
+<base href="{{ asset('../backend') }}/">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>@yield('title') | IT Laptop shop</title>

@@ -73,7 +73,7 @@
                                     {{-- img --}}
 									<div class="form-group" >
 										<label>Ảnh sản phẩm</label>
-										<input required id="img" type="file" name="img" class="form-control hidden" onchange="changeImg(this)">
+										<input  id="img" type="file" name="img" class="form-control hidden" onchange="changeImg(this)">
                                         <img id="avatar" class="thumbnail" width="300px" src="{{ URL('img/'.$product->img) }}">
                                         {{-- <img id="avatar" class="thumbnail" width="300px" src="{{ asset('public/img/'.$product->img) }}"> --}}
                                     </div>

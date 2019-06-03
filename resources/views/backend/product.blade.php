@@ -22,12 +22,13 @@
 										<tr class="bg-primary">
 											<th>ID</th>
                                             <th>Tên Sản phẩm</th>
-                                            <th>Phân loại</th>
-                                            <th>Tình trạng</th>
-                                            <th>Giá sản phẩm</th>
-                                            <th>Trạng thái</th>
                                             <th>Ảnh</th>
-											<th>Danh mục</th>
+                                            <th>Danh mục</th>
+                                            <th>Phân loại</th>
+                                            <th>Giá sản phẩm</th>
+                                            <th>Tình trạng</th>
+                                            <th>Trạng thái</th>
+                                            <th>Nổi bật</th>
 											<th>Tùy chọn</th>
 										</tr>
 									</thead>
@@ -37,12 +38,15 @@
 										<tr>
                                             <td>{{ $product->product_id }}</td>
                                             <td>{{ $product->name }}</td>
-                                            <td>{{ $product->kind }}</td>
-                                            <td>{{ $product->condition }}</td>
-                                            <td>{{ number_format($product->price,0,',','.') }} VND</td>
-                                            <td>{{ $product->status }}</td>
                                             <td><img src="{{ URL('img/'.$product->img) }}" alt="thumbnail" width="110px" height="80px"></td>
                                             <td>{{ $product->cate_name }}</td>
+                                            <td>{{ $product->kind }}</td>
+                                            <td>{{ number_format($product->price,0,',','.') }} VND</td>
+                                            <td>{{ $product->condition }}</td>
+                                            <td>@if ($product->status == 1) Còn hàng @else Hết hàng @endif</td>
+                                            <td>
+                                                <input type="checkbox" name="featured_checkbox" id="featured_checkbox" onclick="return false;" @if ($product->featured == 1) checked @endif>
+                                            </td>
 											<td>
 												<a href="{{ asset('admin/product/edit/'.$product->product_id) }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
 												<a href="{{ asset('admin/product/destroy/'.$product->product_id) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>

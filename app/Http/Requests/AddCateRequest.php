@@ -28,7 +28,8 @@ class AddCateRequest extends FormRequest
         ];
     }
 
-    public function messages() {
+    public function messages()
+    {
         return [
             'name.unique' => 'Tên danh mục đã tồn tại !'
         ];

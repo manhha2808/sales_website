@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,9 +12,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'FrontendController@index');
+
+Route::get('detail/{id}/{slug}.html', 'FrontendController@show');
+
+Route::post('detail/{id}/{slug}.html', 'FrontendController@postComment');
+
+Route::get('category/{id}/{slug}.html', 'FrontendController@getCategory');
+
+Route::get('search', 'FrontendController@getSearch');
 
 Auth::routes();
 
@@ -30,7 +37,7 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogedOut'], function () {
         Route::get('home', 'HomeController@index');
 
-        Route::group(['prefix' => 'category'], function() {
+        Route::group(['prefix' => 'category'], function () {
             Route::get('/', 'CategoryController@index');
 
             Route::post('/', 'CategoryController@store');
@@ -40,11 +47,10 @@ Route::group(['namespace' => 'Admin'], function () {
             Route::post('edit/{id}', 'CategoryController@update');
 
             Route::get('destroy/{id}', 'CategoryController@destroy');
-
         });
 
         // Route for products
-        Route::group(['prefix' => 'product'], function() {
+        Route::group(['prefix' => 'product'], function () {
             Route::get('/', 'ProductController@index');
 
             Route::get('add', 'ProductController@create');
@@ -56,7 +62,6 @@ Route::group(['namespace' => 'Admin'], function () {
             Route::post('edit/{id}', 'ProductController@update');
 
             Route::get('destroy/{id}', 'ProductController@destroy');
-
         });
     });
 });
